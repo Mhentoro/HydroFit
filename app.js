@@ -5,11 +5,11 @@ const products = [
   {
     id: 1,
     title: "Water",
-    basePrice: 110,
+    basePrice: 59,
     sizePrices: {
-      Small: 110,
-      Medium: 150,
-      Large: 190
+      Small: 59,
+      Medium: 89,
+      Large: 109
     },
     colors: [
       { code: "black", img: "./img/water_bl.png" },
@@ -21,11 +21,11 @@ const products = [
   {
     id: 2,
     title: "Supplements",
-    basePrice: 160,
+    basePrice: 99,
     sizePrices: {
-      Small: 160,
-      Medium: 200,
-      Large: 240
+      Small: 99,
+      Medium: 149,
+      Large: 179
     },
     colors: [
       { code: "black", img: "./img/suppliments_bl.png" },
@@ -37,11 +37,11 @@ const products = [
   {
     id: 3,
     title: "Magnesium",
-    basePrice: 140,
+    basePrice: 89,
     sizePrices: {
-      Small: 140,
-      Medium: 180,
-      Large: 220
+      Small: 89,
+      Medium: 139,
+      Large: 159
     },
     colors: [
       { code: "black", img: "./img/magnesium_bl.png" },
@@ -53,11 +53,11 @@ const products = [
   {
     id: 4,
     title: "Juice",
-    basePrice: 180,
+    basePrice: 109,
     sizePrices: {
-      Small: 180,
-      Medium: 220,
-      Large: 260
+      Small: 109,
+      Medium: 179,
+      Large: 229
     },
     colors: [
       { code: "black", img: "./img/juice_bl.png" },
