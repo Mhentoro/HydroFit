@@ -5,99 +5,71 @@ const products = [
   {
     id: 1,
     title: "Water",
-    price: 110,
+    basePrice: 110,
+    sizePrices: {
+      Small: 110,
+      Medium: 150,
+      Large: 190
+    },
     colors: [
-      {
-        code: "black",
-        img: "./img/water_bl.png",
-      },
-      {
-        code: "red",
-        img: "./img/water_r.png",
-      },
-      {
-        code: "blue",
-        img: "./img/water_b.png",
-      },
-      {
-        code: "green",
-        img: "./img/water_g.png",
-      },
+      { code: "black", img: "./img/water_bl.png" },
+      { code: "red", img: "./img/water_r.png" },
+      { code: "blue", img: "./img/water_b.png" },
+      { code: "green", img: "./img/water_g.png" },
     ],
   },
   {
     id: 2,
     title: "Supplements",
-    price: 160,
+    basePrice: 160,
+    sizePrices: {
+      Small: 160,
+      Medium: 200,
+      Large: 240
+    },
     colors: [
-      {
-        code: "black",
-        img: "./img/suppliments_bl.png",
-      },
-      {
-        code: "red",
-        img: "./img/suppliments_r.png",
-      },
-      {
-        code: "blue",
-        img: "./img/suppliments_b.png",
-      },
-      {
-        code: "green",
-        img: "./img/suppliments_g.png",
-      },
+      { code: "black", img: "./img/suppliments_bl.png" },
+      { code: "red", img: "./img/suppliments_r.png" },
+      { code: "blue", img: "./img/suppliments_b.png" },
+      { code: "green", img: "./img/suppliments_g.png" },
     ],
   },
   {
     id: 3,
     title: "Magnesium",
-    price: 140,
+    basePrice: 140,
+    sizePrices: {
+      Small: 140,
+      Medium: 180,
+      Large: 220
+    },
     colors: [
-      {
-        code: "black",
-        img: "./img/magnesium_bl.png",
-      },
-      {
-        code: "red",
-        img: "./img/magnesium_r.png",
-      },
-      {
-        code: "blue",
-        img: "./img/magnesium_b.png",
-      },
-      {
-        code: "green",
-        img: "./img/magnesium_g.png",
-      },
+      { code: "black", img: "./img/magnesium_bl.png" },
+      { code: "red", img: "./img/magnesium_r.png" },
+      { code: "blue", img: "./img/magnesium_b.png" },
+      { code: "green", img: "./img/magnesium_g.png" },
     ],
   },
   {
     id: 4,
     title: "Juice",
-    price: 180,
+    basePrice: 180,
+    sizePrices: {
+      Small: 180,
+      Medium: 220,
+      Large: 260
+    },
     colors: [
-      {
-        code: "black",
-        img: "./img/juice_bl.png",
-      },
-      {
-        code: "red",
-        img: "./img/juice_r.png",
-      },
-      {
-        code: "blue",
-        img: "./img/juice_b.png",
-      },
-      {
-        code: "green",
-        img: "./img/juice_g.png",
-      },
+      { code: "black", img: "./img/juice_bl.png" },
+      { code: "red", img: "./img/juice_r.png" },
+      { code: "blue", img: "./img/juice_b.png" },
+      { code: "green", img: "./img/juice_g.png" },
     ],
   },
 ];
 
-
 let choosenProduct = products[0];
+let selectedSize = "Small";
 
 const currentProductImg = document.querySelector(".productImg");
 const currentProductTitle = document.querySelector(".productTitle");
@@ -105,23 +77,25 @@ const currentProductPrice = document.querySelector(".productPrice");
 const currentProductColors = document.querySelectorAll(".color");
 const currentProductSizes = document.querySelectorAll(".size");
 
+function updatePrice() {
+  const sizeKey = selectedSize.split(" ")[0]; // Extract "Small", "Medium", or "Large"
+  const price = choosenProduct.sizePrices[sizeKey];
+  currentProductPrice.textContent = price + " Денари";
+}
+
 menuItems.forEach((item, index) => {
   item.addEventListener("click", () => {
-    //change the current slide
     wrapper.style.transform = `translateX(${-100 * index}vw)`;
-
-    //change the choosen product
     choosenProduct = products[index];
-
-    //change texts of currentProduct
+    selectedSize = "Small";
     currentProductTitle.textContent = choosenProduct.title;
-    currentProductPrice.textContent = choosenProduct.price + " Денари";
     currentProductImg.src = choosenProduct.colors[0].img;
 
-    //assing new colors
     currentProductColors.forEach((color, index) => {
       color.style.backgroundColor = choosenProduct.colors[index].code;
     });
+
+    updatePrice();
   });
 });
 
@@ -131,14 +105,16 @@ currentProductColors.forEach((color, index) => {
   });
 });
 
-currentProductSizes.forEach((size, index) => {
+currentProductSizes.forEach((size) => {
   size.addEventListener("click", () => {
-    currentProductSizes.forEach((size) => {
-      size.style.backgroundColor = "white";
-      size.style.color = "black";
+    currentProductSizes.forEach((s) => {
+      s.style.backgroundColor = "white";
+      s.style.color = "black";
     });
     size.style.backgroundColor = "black";
     size.style.color = "white";
+    selectedSize = size.textContent;
+    updatePrice();
   });
 });
 
